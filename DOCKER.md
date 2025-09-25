@@ -42,4 +42,7 @@ That’s it—Docker keeps the workflow simple while preserving the project’s 
 
 ## 5. Expose the stack with ngrok (optional)
 
-To share your local menu externally without deploying, you can add extensions "ngrok" to your docker and after start app share to the internet. In BotFather choose your bot -> "Mini Apps" -> add link from ngrok to "Menu  Button" and "Main App".
+Want to share your local menu externally without deploying? You can use [ngrok](https://ngrok.com/) to tunnel port 8000 and get a public URL.
+
+Add the ngrok extension to your Docker setup and, after starting the app, share the generated URL.  
+In BotFather, go to your bot → *Mini Apps* → add the ngrok link to both **Menu Button** and **Main App**.

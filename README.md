@@ -94,11 +94,10 @@ uv run python scripts/create_admin.py
 
 ## Share your local instance quickly (ngrok)
 
-Want colleagues to test the menu remotely? Expose port 8000 with ngrok:
+Want colleagues to test the menu remotely? You can expose port 8000 using [ngrok](https://ngrok.com/).
 
-To share your local menu externally without deploying, you can add extensions "ngrok" to your docker and after start
-app share to the internet. In BotFather choose your bot -> "Mini Apps" -> add link from ngrok to "Menu  Button" and
-"Main App".
+Add the ngrok extension to your Docker setup and, after starting the app, share the generated public URL.  
+In BotFather, go to your bot → *Mini Apps* → add the ngrok link both to **Menu Button** and **Main App**.
 
 ## Production notes
 
