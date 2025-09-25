@@ -1,0 +1,170 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pyenv
+.python-version
+
+# celery beat schedule file
+celerybeat-schedule
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Database
+*.db
+
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Node.js (for frontend)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# React build
+frontend/build/
+frontend/dist/
+
+# Built frontend files in app/static (should be built in Docker)
+# Exclude React build files but keep menu files
+app/static/css/main.*.css
+app/static/css/main.*.css.map
+app/static/js/*.chunk.js
+app/static/js/*.chunk.js.map
+app/static/js/main.*.js
+app/static/js/main.*.js.map
+app/static/js/main.*.js.LICENSE.txt
+app/static/asset-manifest.json
+app/static/favicon.ico
+app/static/logo*.png
+app/static/manifest.json
+app/static/robots.txt
+
+# Vite build artifacts (served by Docker image build step)
+app/static/assets/
+app/static/index.html
+
+# Uploads (if needed)
+# app/static/uploads/
+
+# Local configuration
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Python c
+*/__pycache__/
+*.pyc

@@ -1,0 +1,98 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - POSTGRES_PORT=${POSTGRES_PORT}
+      - DATABASE_URL=postgresql+asyncpg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}
+      - BOT_TOKEN=${BOT_TOKEN:-}
+      - SITE_NAME=${SITE_NAME:-Canteen Menu}
+      - SITE_DESCRIPTION=${SITE_DESCRIPTION:-Fresh and tasty dishes every day}
+      - CURRENCY_CODE=${CURRENCY_CODE:-GEL}
+      - CURRENCY_SYMBOL=${CURRENCY_SYMBOL:-₾}
+      - CURRENCY_LOCALE=${CURRENCY_LOCALE:-ru-GE}
+      - SECRET_KEY=${SECRET_KEY}
+      - ACCESS_TOKEN_EXPIRE_MINUTES=${ACCESS_TOKEN_EXPIRE_MINUTES:-1440}
+      - RATE_LIMIT_PUBLIC_REQUESTS=${RATE_LIMIT_PUBLIC_REQUESTS:-500}
+      - RATE_LIMIT_ADMIN_REQUESTS=${RATE_LIMIT_ADMIN_REQUESTS:-200}
+      - RATE_LIMIT_AUTH_ATTEMPTS=${RATE_LIMIT_AUTH_ATTEMPTS:-50}
+      - RATE_LIMIT_WINDOW=${RATE_LIMIT_WINDOW:-60}
+      - RATE_LIMIT_BACKEND=${RATE_LIMIT_BACKEND:-redis}
+      - RATE_LIMIT_PUBLIC_IMAGES_REQUESTS=${RATE_LIMIT_PUBLIC_IMAGES_REQUESTS:-2000}
+      - REDIS_PASSWORD=${REDIS_PASSWORD:-}
+      # Proxy headers handling (enable when running behind a proxy / LB)
+      # - ENABLE_PROXY_HEADERS=${ENABLE_PROXY_HEADERS}
+      # - FORWARDED_ALLOW_IPS=${FORWARDED_ALLOW_IPS}
+      - ADMIN_USERNAME=${ADMIN_USERNAME}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+  bot:
+    build: .
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - POSTGRES_PORT=${POSTGRES_PORT}
+      - DATABASE_URL=postgresql+asyncpg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}
+      - BOT_TOKEN=${BOT_TOKEN:-}
+      - SITE_NAME=${SITE_NAME:-Canteen Menu}
+      - SITE_DESCRIPTION=${SITE_DESCRIPTION:-Fresh and tasty dishes every day}
+      - CURRENCY_CODE=${CURRENCY_CODE:-GEL}
+      - CURRENCY_SYMBOL=${CURRENCY_SYMBOL:-₾}
+      - CURRENCY_LOCALE=${CURRENCY_LOCALE:-ru-GE}
+      - SECRET_KEY=${SECRET_KEY}
+      - ADMIN_USERNAME=${ADMIN_USERNAME}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+    depends_on:
+      app:
+        condition: service_healthy
+    restart: unless-stopped
+    command: ["uv", "run", "daily_dish_hub"]
+
+  db:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  redis:
+    image: redis:7.2-alpine
+    restart: unless-stopped
+#    ports:
+#      - "6379:6379"
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD:-}
+    command: ["sh", "-c", "if [ -n \"$REDIS_PASSWORD\" ]; then exec redis-server --appendonly no --requirepass \"$REDIS_PASSWORD\"; else exec redis-server --appendonly no; fi"]
+
+volumes:
+  postgres_data:

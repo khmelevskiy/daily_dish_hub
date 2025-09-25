@@ -1,0 +1,18 @@
+@import './styles/layout.css';
+@import './styles/auth.css';
+@import './styles/menu.css';
+@import './styles/items.css';
+@import './styles/categories.css';
+@import './styles/units.css';
+@import './styles/modals.css';
+@import './styles/buttons.css';
+@import './styles/images.css';
+@import './styles/responsive.css';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* App.css aggregates modular styles only. All rules live in styles/*.css */

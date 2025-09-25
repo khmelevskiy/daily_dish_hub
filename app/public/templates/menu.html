@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍽️ {{ site_name }}</title>
+    <meta name="app:currency_symbol" content="{{ currency_symbol }}">
+    <meta name="app:locale" content="{{ currency_locale }}">
+    <link rel="stylesheet" href="{{ request.url_for('public_static', path='css/menu.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🍽️ {{ site_name }}</h1>
+            <p>{{ site_description }}</p>
+        </div>
+
+        <div class="menu-validity hidden" id="menu-validity">
+            <h3>⏰ Menu validity <span id="menu-status-label" class="status-indicator"></span></h3>
+            <div class="validity-times">
+                <div class="validity-time">
+                    <strong>Start:</strong> <span id="menu-start-time">-</span>
+                </div>
+                <div class="validity-time">
+                    <strong>End:</strong> <span id="menu-end-time">-</span>
+                </div>
+            </div>
+        </div>
+        <div id="menu-container">
+            <div class="loading">
+                <div class="spinner"></div>
+                <h3>Loading menu...</h3>
+            </div>
+        </div>
+    </div>
+
+    <a href="/admin" class="admin-link">🔧 Admin</a>
+
+    <!-- Cart -->
+    <div id="cart" class="cart">
+        <div class="cart-header">
+            <h3>🛒 Cart</h3>
+            <div class="cart-header-buttons">
+                <button class="clear-cart-btn" id="clear-cart-btn" title="Clear cart">🗑️</button>
+                <button class="close-cart-btn" id="close-cart-btn">×</button>
+            </div>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <div class="empty-cart">Cart is empty</div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <strong>Total: <span id="cart-total">0.00</span> {{ currency_symbol }}</strong>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart button -->
+    <button class="cart-toggle-btn" id="cart-toggle-btn">
+        🛒 <span class="cart-label">Cart</span>
+        <span class="cart-count" id="cart-count">0</span>
+    </button>
+
+    <script src="{{ request.url_for('public_static', path='js/menu.js') }}" {% if csp_nonce %}nonce="{{ csp_nonce }}"{% endif %}></script>
+</body>
+</html>

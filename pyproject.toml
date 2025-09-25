@@ -1,0 +1,64 @@
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]  # E - pycodestyle errors, F - pyflakes, I - isort; B - bugbear, C - complexity,  N - naming, D - pydocstyle
+
+[tool.ruff.lint.isort]
+known-first-party = ["app"]
+lines-after-imports = 2
+section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
+
+[tool.pyright]
+typeCheckingMode = "basic"
+
+[project]
+name = "daily_dish_hub"
+version = "1.0.0"
+description = "Telegram bot for daily canteen menu with admin editing"
+readme = "README.md"
+requires-python = ">=3.13,<3.14"
+authors = [
+  { name = "Aleksandr Khmelevskii" }
+]
+dependencies = [
+  "aiogram>=3.22.0",
+  "pydantic-settings>=2.10.1",
+  "SQLAlchemy>=2.0.43",
+  "asyncpg>=0.30.0",
+  "psycopg2-binary>=2.9.10",
+  "fastapi>=0.116.1",
+  "uvicorn>=0.35.0",
+  "python-multipart>=0.0.20",
+  "greenlet>=3.2.4",
+  "jinja2>=3.1.6",
+  "alembic>=1.16.5",
+  "python-jose[cryptography]>=3.5.0",
+  "cryptography>=45.0.7",
+  "bcrypt>=4.3.0",
+  "Pillow>=11.3.0",
+  "pillow-heif>=1.1.0",
+  "redis>=6.4.0",
+]
+
+[project.scripts]
+daily_dish_hub = "app.bot:run_bot"
+
+[build-system]
+requires = ["hatchling>=1.25.0"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["app"]
+
+[dependency-groups]
+dev = [
+  "ruff>=0.13.0",
+  "pyright>=1.1.405",
+  "black>=25.1.0",
+  "requests>=2.32.5",
+  "python-dotenv>=1.1.1",
+  "pytest>=8.4.2",
+  "pytest-asyncio>=1.2.0",
+  "aiosqlite>=0.20.0",
+]
