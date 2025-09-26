@@ -142,10 +142,11 @@ function App() {
       // Reload images from server to sync
       await loadImages();
       setSelectedImage(uploadedImage.id);
-      alert('Image uploaded successfully!');
+      showModal('Upload complete', 'Image uploaded successfully.');
     } catch (error) {
       console.error('Error uploading image:', error);
-      alert('Image upload error');
+      const message = formatApiError(error, 'Image upload error');
+      showModal('Upload failed', message);
     }
   };
 
@@ -158,10 +159,11 @@ function App() {
       // Reload images from server to sync
       await loadImages();
       setSelectedImage(uploadedImage.id);
-      alert('Image uploaded successfully!');
+      showModal('Upload complete', 'Image uploaded successfully.');
     } catch (error) {
       console.error('Error uploading image:', error);
-      alert('Image upload error');
+      const message = formatApiError(error, 'Image upload error');
+      showModal('Upload failed', message);
     }
   };
 
@@ -179,7 +181,8 @@ function App() {
       }
     } catch (error) {
       console.error('Error deleting image:', error);
-      alert('Error deleting image');
+      const message = formatApiError(error, 'Error deleting image');
+      showModal('Delete failed', message);
     }
   };
 
@@ -201,14 +204,11 @@ function App() {
         setUnits(unitsData || []);
 
         // Load local menu
-        const localItems = [];
-        for (const menuItem of menuData.items || []) {
-          localItems.push({
-            id: menuItem.id,
-            item_id: menuItem.item_id,
-            item: menuItem.item,
-          });
-        }
+        const localItems = (menuData.items || []).map((menuItem) => ({
+          id: menuItem.id,
+          item_id: menuItem.item_id,
+          item: menuItem.item,
+        }));
         setLocalMenuItems(localItems);
 
         // Load menu date
