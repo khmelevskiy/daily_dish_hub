@@ -30,6 +30,7 @@ Fill the following keys in `.env`:
 - `BOT_TOKEN` – obtained from BotFather (next step).
   Optional but handy:
 - `ADMIN_USERNAME` / `ADMIN_PASSWORD` – bootstrap the first admin account.
+- Other important environment variables to fill out are marked `❗️`
 
 For local development without Docker:
 

@@ -11,6 +11,7 @@ Important values:
 - `SECRET_KEY` – strong random string (32+ chars).
 - `POSTGRES_DB`, `POSTGRES_USER`, `POSTGRES_PASSWORD` – used by the bundled PostgreSQL container (defaults in `env.example`).
 - `BOT_TOKEN` – Telegram token from BotFather.
+- Other important environment variables to fill out are marked `❗️`
 
 ## 2. Build and start
 

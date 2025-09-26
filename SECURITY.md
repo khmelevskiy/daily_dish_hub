@@ -113,14 +113,6 @@ python3 -c "import secrets; import string; print(''.join(secrets.choice(string.a
 
 - In production or when `DISABLE_DOCS=true`, OpenAPI schema and docs endpoints are disabled (`/openapi.json`, `/docs`, `/redoc`). Keep docs off in internet‑facing environments.
 
-Example nginx (simplified):
-
-```nginx
-proxy_set_header X-Real-IP $remote_addr;
-proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-proxy_set_header X-Forwarded-Proto $scheme;
-```
-
 #### Rate limiting
 
 - Limits are applied before authentication (per IP) by design, to protect endpoints regardless of token validity.
