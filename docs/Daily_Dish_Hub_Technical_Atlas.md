@@ -1,6 +1,6 @@
-# Daily Dish Hub Technical Atlas
+# 🗺️ Daily Dish Hub Technical Atlas
 
-## 1. Project Overview
+## 1. 🧭 Project Overview
 
 Daily Dish Hub is a full-stack platform for publishing a daily cafeteria menu. It combines a FastAPI backend, a React-based admin dashboard, PostgreSQL storage, Redis-powered rate limiting, and an aiogram Telegram bot so that both guests and administrators have convenient entry points.
 
@@ -22,14 +22,11 @@ Daily Dish Hub is a full-stack platform for publishing a daily cafeteria menu. I
 - **Tooling (`scripts/`)** — Shell/Python utilities that bootstrap, build, deploy, and maintain the project.
 - **Test suite (`tests/`)** — Functional security/rate-limit tests plus unit coverage for utilities and services.
 
-## 2. Directory & File Reference
+## 2. 📂 Directory & File Reference
 
 ### 2.1 Root Files
 
-- `README.md` — High-level README highlighting features, deployment notes, and quickstart.
-- `QUICKSTART.md` — Step-by-step local setup instructions, including Telegram bot creation tips.
-- `DOCKER.md` — Guidance for containerized workflows, compose commands, and production notes.
-- `SECURITY.md` — Mandatory configuration requirements, threat mitigations, and response checklists.
+- `README.md` — High-level overview highlighting features, deployment notes, and documentation links.
 - `CONTRIBUTING.md` — Contribution workflow, test expectations, and development tips.
 - `LICENSE` — Project license file.
 - `pyproject.toml` & `uv.lock` — uv-managed dependency definitions for backend tooling.
@@ -192,11 +189,15 @@ Daily Dish Hub is a full-stack platform for publishing a daily cafeteria menu. I
 ### 2.7 `docs/`
 
 - `README.md` — Architecture, data flow, API summary, deployment notes, and testing guidance.
-- `SCREENSHOTS.md` — Placeholder references for visual assets included in the repo.
-- `iphone_14_pro_max_review.gif`, `web_review.gif`, `tg_app.png` — Example media assets for documentation.
+- `QUICKSTART.md` — Step-by-step local setup instructions, including Telegram bot creation tips.
+- `DOCKER.md` — Guidance for containerized workflows, compose commands, and production notes.
+- `SECURITY.md` — Mandatory configuration requirements, threat mitigations, and response checklists.
+- `TODO.md` — Running backlog of enhancements and chores.
+- `SCREENSHOTS.md` — Planned visual assets with references to stored media.
+- Media assets (`pics/`) — Example GIFs and PNGs referenced in documentation.
 - `Daily_Dish_Hub_Technical_Atlas.md` — (this document) comprehensive technical reference created for deep-dive reviews.
 
-## 3. Cross-Cutting Notes
+## 3. 🔁 Cross-Cutting Notes
 
 - **Shared Services:** Backend services (`app/services`) are reused by both API endpoints and the Telegram bot, ensuring consistent business rules.
 - **Rate Limiting & Security:** Middleware ordering in `app/web.py` ensures security checks happen before rate limiting, yielding detailed logs for suspicious patterns.

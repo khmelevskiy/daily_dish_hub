@@ -1,6 +1,6 @@
-# Quickstart Guide
+# 🚀 Quickstart Guide
 
-## 1. Prerequisites
+## 1. 🧰 Prerequisites
 
 - macOS Terminal (used during development).
 - Docker **or** Python 3.13 + Node.js 18 +.
@@ -8,14 +8,14 @@
 - Telegram account to create a bot (free).
 - ngrok account if you plan to share the local instance temporarily.
 
-## 2. Clone the repository
+## 2. 📥 Clone the repository
 
 ```bash
 git clone https://github.com/khmelevskiy/daily_dish_hub.git
 cd daily_dish_hub
 ```
 
-## 3. Copy the environment template
+## 3. 🧾 Copy the environment template
 
 Just run `setup.sh` or manually steps:
 
@@ -38,7 +38,7 @@ For local development without Docker:
 - Set `POSTGRES_PORT=5433` (or whatever port your local Postgres uses)
 - Make sure your local Postgres is running and accessible with these credentials
 
-## 4. Create a Telegram bot (one time)
+## 4. 🤖 Create a Telegram bot (one time)
 
 1. Open Telegram and chat with [@BotFather](https://t.me/BotFather).
 2. Open UI for settings or just chat:
@@ -48,7 +48,7 @@ For local development without Docker:
    4. Add commands `start, menu and help`
    5. (Optional) Add your public url to `Menu Button` and `Main App` (UI bot father -> your bot -> Mini Apps)
 
-## 5. Run the stack
+## 5. ▶️ Run the stack
 
 ### Option A — Docker
 
@@ -71,14 +71,14 @@ Services start in the background: web app, Telegram bot, PostgreSQL, Redis (for 
 
 Need an admin later? Run `uv run python scripts/create_admin.py` to add one interactively.
 
-## 6. Check that it works
+## 6. ✅ Check that it works
 
 - Public site: <http://localhost:8000/>
 - Admin dashboard: <http://localhost:8000/admin>
 - API health: <http://localhost:8000/health>
 - Telegram: send `/start` to your bot; try `/menu`.
 
-## 7. Production deployment
+## 7. 🏭 Production deployment
 
 For production deployment, update these settings in `.env`:
 
@@ -89,8 +89,9 @@ For production deployment, update these settings in `.env`:
 - `JWT_ISSUER=daily_dish_hub` - who issued the token (your app name)
 - `JWT_AUDIENCE=admin-panel` - who should use the token (admin interface)
 
-## 8. Next steps
+## 8. ➡️ Next steps
 
-- Read [docs/README.md](docs/README.md) for architecture details.
+- Read [README.md](README.md) for architecture details.
+- Dive deeper into flows via [Daily_Dish_Hub_Technical_Atlas.md](Daily_Dish_Hub_Technical_Atlas.md).
 - Harden your deployment with [SECURITY.md](SECURITY.md).
-- Contribute improvements following [CONTRIBUTING.md](CONTRIBUTING.md).
+- Contribute improvements following [../CONTRIBUTING.md](../CONTRIBUTING.md).

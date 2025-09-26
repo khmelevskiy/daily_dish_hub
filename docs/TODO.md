@@ -1,4 +1,4 @@
-# Potential Enhancements (No Commitment)
+# 📝 Potential Enhancements (No Commitment)
 
 - Add a page with receipts so that a cashier can quickly add items to the menu for reporting purposes and for generating simple charts (possibly another page in the admin panel).
 - Add the ability to store several old menus and manage them (for example, make a previous menu active again, or set up menu configurations based on days of the week).

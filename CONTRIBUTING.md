@@ -1,13 +1,13 @@
-# Contributing to Daily Dish Hub
+# 🤝 Contributing to Daily Dish Hub
 
-## Getting Started
+## 🚀 Getting Started
 
 1. Fork & clone the repository.
-2. Follow the [Quickstart](QUICKSTART.md) to configure `.env`, create a Telegram bot token, and launch the stack (Docker or local).
+2. Follow the [Quickstart](docs/QUICKSTART.md) to configure `.env`, create a Telegram bot token, and launch the stack (Docker or local).
 3. Run `./scripts/setup.sh` once if you are developing locally. It installs Python dependencies (via `uv`), npm packages, and pre-commit hooks.
 4. Fill `.env` with your settings (see `.env.example`).
 
-## Everyday developer workflow
+## 🔄 Everyday developer workflow
 
 ```bash
 ./scripts/run_web.sh   # FastAPI + React (reload)
@@ -16,13 +16,13 @@
 
 If you rely on Docker, use `./scripts/run_docker.sh up` instead. Keep Postgres and Redis running while you iterate.
 
-## Tests & quality
+## ✅ Tests & quality
 
 - You can run all tests with `tests/run_all.sh`, or run only the specific tests you need.
 
-## Reporting issues
+## 🐞 Reporting issues
 
-- For security vulnerabilities, follow [SECURITY.md](SECURITY.md) and create a issue.
+- For security vulnerabilities, follow [SECURITY.md](docs/SECURITY.md) and create a issue.
 - For bugs, include reproduction steps and environment details (Docker vs local, OS, etc.).
 - For ideas, describe the user scenario you want to improve.
 

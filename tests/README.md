@@ -1,6 +1,6 @@
-# Test Suite (security + rate-limiter)
+# 🧪 Test Suite (integration + services)
 
-This folder contains tests for security checks and rate limiting.
+This folder contains functional security, rate limiting, API wiring, and unit-level service tests.
 
 ## Files
 

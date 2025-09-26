@@ -1,6 +1,6 @@
 # 🔒 Security
 
-## Important security settings
+## 🧷 Important security settings
 
 ### 1. Mandatory changes before deployment
 
@@ -42,7 +42,7 @@ BOT_TOKEN=your-telegram-bot-token
 
 ### 2. Generating strong secrets
 
-**You must manually generate and set these secrets:**
+**Make sure these secrets are long and random.** `./scripts/setup.sh` automatically replaces placeholder values in `.env` (for example `SECRET_KEY=change-me`). If the script cannot generate a value (e.g. missing `openssl`), use the commands below and paste the results manually.
 
 #### For SECRET_KEY (at least 32 chars)
 
@@ -186,10 +186,12 @@ Recommendations
 - Regularly test restore on a staging DB.
 - Restrict access to backup files (contain secrets/data).
 
+> `source .env` works because the file uses `KEY=value` assignments. No virtual environment activation is required.
+
 ## ⚠️ Warning
 
 **Do NOT use defaults in production.**
 
 All values in `env.example` are examples for development only.
 
-**SECRET_KEY must be manually set to a strong random value before starting the application.**
+**SECRET_KEY must be set to a strong random value before starting the application.** `./scripts/setup.sh` validates the value and generates a secure one if a placeholder is detected.
