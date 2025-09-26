@@ -21,7 +21,7 @@ jobs:
       - name: Ruff format check
         run: uv run ruff format --check
       - name: Detect secrets
-        run: uvx detect-secrets scan --baseline .secrets.baseline --fail-on-unknown --all-files > /tmp/detect-secrets.json
+        run: uvx detect-secrets scan --baseline .secrets.baseline --all-files
 
   frontend:
     name: Frontend

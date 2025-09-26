@@ -57,7 +57,7 @@ Want colleagues to test the menu remotely? You can expose port 8000 using [ngrok
 - Testing guide: [tests/README.md](tests/README.md)
 - Contribution guidelines: [CONTRIBUTING.md](CONTRIBUTING.md)
 - Schema diagram: [docs/pics/db_schema.png](docs/pics/db_schema.png)
-- Syntax checks workflow: `.github/workflows/syntax-checks.yml` (ruff lint/format, detect-secrets, frontend lint/tests)
+- Syntax checks workflow: `.github/workflows/syntax-checks.yml` (ruff lint/format, detect-secrets scan, frontend lint/tests)
 
 ## ⚠️ Security reminder
 
