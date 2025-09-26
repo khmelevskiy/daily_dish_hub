@@ -15,9 +15,17 @@ git clone https://github.com/khmelevskiy/daily_dish_hub.git
 cd daily_dish_hub
 ```
 
-## 3. 🧾 Copy the environment template
+## 3. 🧾 Bootstrap configuration
 
-Just run `setup.sh` or manually steps:
+Run the bootstrap script; it checks prerequisites, creates `.env` from the template, generates a secure `SECRET_KEY`, installs Python/npm dependencies, and sets up pre-commit hooks:
+
+```bash
+./scripts/setup.sh --no-frontend-build
+```
+
+> Omit `--no-frontend-build` if you want the script to produce a production frontend build right away. The script is idempotent—rerun it whenever you need to refresh dependencies or secrets.
+
+### Manual fallback (only if you cannot run the script)
 
 ```bash
 cp env.example .env
@@ -25,18 +33,18 @@ cp env.example .env
 
 Fill the following keys in `.env`:
 
-- `SECRET_KEY` – generate with `python3 -c "import secrets; print(secrets.token_urlsafe(48))"`.
-- `POSTGRES_PASSWORD` – any password (used by Docker Postgres).
+- `SECRET_KEY` – generate with `python3 -c "import secrets; print(secrets.token_urlsafe(48))"` (32+ characters).
+- `POSTGRES_PASSWORD` – password for the bundled Postgres.
 - `BOT_TOKEN` – obtained from BotFather (next step).
   Optional but handy:
 - `ADMIN_USERNAME` / `ADMIN_PASSWORD` – bootstrap the first admin account.
-- Other important environment variables to fill out are marked `❗️`
+- Other important environment variables to fill out are marked `❗️`.
 
 For local development without Docker:
 
-- Set `POSTGRES_HOST=localhost` (instead of 'db' which is for Docker)
-- Set `POSTGRES_PORT=5433` (or whatever port your local Postgres uses)
-- Make sure your local Postgres is running and accessible with these credentials
+- Set `POSTGRES_HOST=localhost` (instead of `db`).
+- Set `POSTGRES_PORT=5433` (or the port your local Postgres uses).
+- Ensure your local Postgres is running and accessible with these credentials.
 
 ## 4. 🤖 Create a Telegram bot (one time)
 
@@ -62,7 +70,7 @@ Services start in the background: web app, Telegram bot, PostgreSQL, Redis (for 
 ### Option B — Local development
 
 ```bash
-./scripts/setup.sh
+./scripts/setup.sh          # safe to rerun; ensures deps/pre-commit hooks
 ./scripts/run_web.sh        # FastAPI + React, reload enabled
 ./scripts/run_bot.sh        # Telegram bot (separate terminal)
 ```
