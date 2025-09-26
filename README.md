@@ -1,9 +1,7 @@
 # Daily Dish Hub
 
 [![Python 3.13](https://img.shields.io/badge/Python-3.13-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
-[![Node.js 18+](https://img.shields.io/badge/Node.js-18%2B-339933?style=flat-square&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
 [![FastAPI 0.117.1](https://img.shields.io/badge/FastAPI-0.117.1-009688?style=flat-square&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
-[![PostgreSQL 15](https://img.shields.io/badge/PostgreSQL-15-4169E1?style=flat-square&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
 [![React 19.1](https://img.shields.io/badge/React-19.1-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev/)
 [![License MIT](https://img.shields.io/badge/License-MIT-000000?style=flat-square&logo=opensourceinitiative&logoColor=white)](LICENSE)
 
@@ -119,6 +117,7 @@ Want colleagues to test the menu remotely? You can expose port 8000 using [ngrok
 - Docker tricks: [DOCKER.md](DOCKER.md)
 - Quick step-by-step cheat sheet: [QUICKSTART.md](QUICKSTART.md)
 - Contribution guidelines: [CONTRIBUTING.md](CONTRIBUTING.md)
+- Schema diagram: [docs/pics/db_schema.png](docs/pics/db_schema.png)
 - CI: GitHub Actions runs backend Ruff lint/format checks and frontend lint/tests (`.github/workflows/ci.yml`).
 
 ## Security reminder

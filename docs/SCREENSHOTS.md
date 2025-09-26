@@ -2,12 +2,12 @@
 
 ## GIF review from desktop browser
 
-![alt text](pics/web_review.gif)
+![web_review](pics/web_review.gif)
 
 ## GIF review from iphone pro max (through safari browser)
 
-![alt text](pics/iphone_pro_max_review.gif)
+![iphone_pro_max_review](pics/iphone_pro_max_review.gif)
 
 ## Screenshot from telegram app (bot menu)
 
-![alt text](pics/tg_app.png)
+![tg_app](pics/tg_app.png)

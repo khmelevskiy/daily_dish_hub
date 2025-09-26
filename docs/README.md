@@ -11,7 +11,7 @@ Daily Dish Hub is a full-stack application for publishing and maintaining a cant
 ### 2.1 Components
 
 - **API service (`app/web.py`)**: FastAPI app served by Uvicorn. Provides REST APIs, serves the React admin build, and renders a minimal public menu page via Jinja templates.
-- **Telegram bot (`app/bot/__init__.py`)**: aiogram bot that reads menu data through the same service layer as the 
+- **Telegram bot (`app/bot/__init__.py`)**: aiogram bot that reads menu data through the same service layer as the
   web API. Runs either as a separate Docker service or standalone via `uv run daily_dish_hub`.
 - **Database**: PostgreSQL (async SQLAlchemy / asyncpg) stores menu entities, uploads, and users. Alembic manages schema migrations.
 - **Rate limit backend**: in-memory by default, Redis when `RATE_LIMIT_BACKEND=redis` (Docker compose includes a Redis service).
@@ -37,6 +37,9 @@ Daily Dish Hub is a full-stack application for publishing and maintaining a cant
 | `daily_menu_items` | Join table linking menu entries to items.                                    |
 | `users`            | Admin accounts with hashed passwords and roles.                              |
 | `menu_settings`    | Key-value storage for menu window settings.                                  |
+
+**Entity diagram:**
+![Database schema diagram](pics/db_schema.png)
 
 ## 4. Request Flow
 
