@@ -119,6 +119,7 @@ Want colleagues to test the menu remotely? You can expose port 8000 using [ngrok
 - Docker tricks: [DOCKER.md](DOCKER.md)
 - Quick step-by-step cheat sheet: [QUICKSTART.md](QUICKSTART.md)
 - Contribution guidelines: [CONTRIBUTING.md](CONTRIBUTING.md)
+- CI: GitHub Actions runs backend Ruff lint/format checks and frontend lint/tests (`.github/workflows/ci.yml`).
 
 ## Security reminder
 
