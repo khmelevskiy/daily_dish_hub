@@ -26,6 +26,7 @@ def _env_admin_creds() -> tuple[str, str] | None:
     p = os.getenv("ADMIN_PASSWORD")
     if u and p:
         return u, p
+
     return None
 
 
@@ -37,6 +38,7 @@ def _require_admin_creds() -> tuple[str, str]:
     creds = _env_admin_creds()
     if not creds:
         pytest.skip("ADMIN_USERNAME/ADMIN_PASSWORD not set; skipping admin permission tests")
+
     return creds
 
 
@@ -49,6 +51,7 @@ def _login(http, base_url: str, username: str, password: str) -> str:
     assert r.status_code == 200, f"Login failed for {username}: {r.text}"
     token = r.json().get("access_token")
     assert token, "No access_token in login response"
+
     return token
 
 
