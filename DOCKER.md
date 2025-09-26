@@ -19,6 +19,8 @@ Important values:
 ./scripts/run_docker.sh up      # starts web, bot, postgres, redis
 ```
 
+The `frontend-builder` stage compiles the Vite admin UI into `frontend/dist/`; the final image copies that bundle into `app/static/`.
+
 First start initializes the database, applies Alembic migrations, seeds default categories/units, and creates the first admin if credentials are present in `.env`.
 
 > The runtime image bundles the native libraries Pillow needs for HEIF/AVIF (`libheif1`, `libde265-0`, `libjpeg62-turbo`, `libtiff6`, `libwebp7`, `libopenjp2-7`), so image uploads work out of the box.
@@ -44,5 +46,7 @@ That’s it—Docker keeps the workflow simple while preserving the project’s 
 
 Want to share your local menu externally without deploying? You can use [ngrok](https://ngrok.com/) to tunnel port 8000 and get a public URL.
 
-Add the ngrok extension to your Docker setup and, after starting the app, share the generated URL.  
-In BotFather, go to your bot → *Mini Apps* → add the ngrok link to both **Menu Button** and **Main App**.
+1. Install the Docker ngrok extension (`docker extension install ngrok/ngrok-for-docker`) or enable it from Docker Desktop → Extensions.
+2. Start the stack as usual: `docker compose up --build`.
+3. In the ngrok extension, start an HTTP tunnel to port 8000 and copy the forwarding URL.
+4. In BotFather, go to your bot → *Mini Apps* → add that URL to both **Menu Button** and **Main App**.

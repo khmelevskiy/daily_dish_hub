@@ -2,7 +2,7 @@
 
 [![Python 3.13](https://img.shields.io/badge/Python-3.13-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
 [![Node.js 18+](https://img.shields.io/badge/Node.js-18%2B-339933?style=flat-square&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
-[![FastAPI 0.116.1](https://img.shields.io/badge/FastAPI-0.116.1-009688?style=flat-square&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![FastAPI 0.117.1](https://img.shields.io/badge/FastAPI-0.117.1-009688?style=flat-square&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![PostgreSQL 15](https://img.shields.io/badge/PostgreSQL-15-4169E1?style=flat-square&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
 [![React 19.1](https://img.shields.io/badge/React-19.1-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev/)
 [![License MIT](https://img.shields.io/badge/License-MIT-000000?style=flat-square&logo=opensourceinitiative&logoColor=white)](LICENSE)
@@ -96,18 +96,22 @@ uv run python scripts/create_admin.py
 
 Want colleagues to test the menu remotely? You can expose port 8000 using [ngrok](https://ngrok.com/).
 
-Add the ngrok extension to your Docker setup and, after starting the app, share the generated public URL.  
-In BotFather, go to your bot → *Mini Apps* → add the ngrok link both to **Menu Button** and **Main App**.
+1. Install the Docker ngrok extension (`docker extension install ngrok/ngrok-for-docker`) or enable it via Docker Desktop → Extensions.
+2. Start the stack: `docker compose up`.
+3. In the ngrok extension, start an HTTP tunnel to port 8000 and copy the forwarding URL.
+4. In BotFather, go to your bot → *Mini Apps* → add that URL both to **Menu Button** and **Main App**.
 
 ## Production notes
 
-- Use a managed PostgreSQL instance and persistent storage.
-- Keep `.env` secrets out of version control; rotate tokens if leaked.
-- Set `ENV=production` to enable production-specific security settings.
+- Generate a strong `SECRET_KEY` (>=32 random characters) and keep it outside version control; rotate it if leaked.
+- Set `ENV=production` to enforce production-specific security defaults.
 - Set `TRUSTED_HOSTS` to your real domain and serve the app behind HTTPS (nginx, Caddy, Traefik, etc.).
+- Keep docs disabled in public environments (`DISABLE_DOCS=true`).
 - Enable `ENABLE_PROXY_HEADERS=true` plus `FORWARDED_ALLOW_IPS`/`TRUSTED_PROXIES` when running behind a load balancer.
+- Keep `.env` secrets out of version control; rotate tokens if leaked.
 - For enhanced JWT security, set `JWT_ISSUER` and `JWT_AUDIENCE` to restrict token usage.
 - Prefer Redis rate limiting (`RATE_LIMIT_BACKEND=redis`) for multi-instance deployments.
+- Use a managed PostgreSQL instance and persistent storage.
 
 ## Documentation & support
 
