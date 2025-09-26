@@ -21,7 +21,10 @@ jobs:
       - name: Ruff format check
         run: uv run ruff format --check
       - name: Detect secrets
-        run: uvx detect-secrets scan --baseline .secrets.baseline --all-files
+        run: >-
+          uvx detect-secrets scan
+          --baseline .secrets.baseline
+          --exclude-files "(^\\.venv/|^frontend/node_modules/|^frontend/dist/|^docs/pics/)"
 
   frontend:
     name: Frontend
