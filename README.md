@@ -55,6 +55,7 @@ Want colleagues to test the menu remotely? You can expose port 8000 using [ngrok
 
 - Architecture overview: [docs/README.md](docs/README.md)
 - Quickstart walkthrough: [docs/QUICKSTART.md](docs/QUICKSTART.md)
+- Donation options: [docs/DONATE.md](docs/DONATE.md)
 - Docker playbook: [docs/DOCKER.md](docs/DOCKER.md)
 - Security checklist: [docs/SECURITY.md](docs/SECURITY.md)
 - Technical atlas (flows & diagrams): [docs/Daily_Dish_Hub_Technical_Atlas.md](docs/Daily_Dish_Hub_Technical_Atlas.md)
@@ -62,6 +63,7 @@ Want colleagues to test the menu remotely? You can expose port 8000 using [ngrok
 - Roadmap & chores: [docs/TODO.md](docs/TODO.md)
 - Testing guide: [tests/README.md](tests/README.md)
 - Contribution guidelines: [CONTRIBUTING.md](CONTRIBUTING.md)
+- Frontend notes: [frontend/README.md](frontend/README.md)
 - Schema diagram: [docs/pics/db_schema.png](docs/pics/db_schema.png)
 - Syntax checks workflow: `.github/workflows/syntax-checks.yml` (ruff lint/format, detect-secrets scan, frontend lint/tests)
 
