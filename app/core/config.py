@@ -26,12 +26,12 @@ class Settings(BaseSettings):
     jwt_audience: str | None = None
 
     # Rate limiting settings
-    rate_limit_public_requests: int = 500  # requests per minute for public APIs
-    rate_limit_admin_requests: int = 200  # requests per minute for admin APIs
+    rate_limit_public_requests: int = 1000  # requests per minute for public APIs
+    rate_limit_admin_requests: int = 2000  # requests per minute for admin APIs
     rate_limit_auth_attempts: int = 50  # login attempts per minute
     rate_limit_window: int = 60  # window in seconds
     # Soft limit for public images (GET /images/{id})
-    rate_limit_public_images_requests: int = 2000  # per minute for image downloads
+    rate_limit_public_images_requests: int = 10000  # per minute for image downloads
     # Rate limit backend configuration
     rate_limit_backend: str = "redis"  # memory|redis
     rate_limit_redis_url: str | None = "redis://redis:6379/0"

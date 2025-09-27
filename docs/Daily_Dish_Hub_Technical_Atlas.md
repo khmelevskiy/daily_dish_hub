@@ -42,13 +42,16 @@ Daily Dish Hub is a full-stack platform for publishing a daily cafeteria menu. I
 
 #### `app/api/` — REST Routers
 
-- `__init__.py` — Constructs the aggregated API router, defines admin token verification dependency, and wires sub-routers under `/auth`, `/images`, and `/admin/*` prefixes.
+- `__init__.py` — Aggregates routers, mounts public endpoints, and nests the admin router under `/admin/*` with dependency-based token checks.
+- `dependencies.py` — Shared dependencies (`verify_admin_token`) enforcing admin authentication on protected routes.
 - `auth.py` — Authentication endpoints: login (JWT issuance), register/list/update/delete users, plus `get_current_user` helpers used by other routers.
 - `categories.py` — Admin CRUD for menu categories (create/update/delete, ordering helpers, moving items between categories, handling orphaned items).
 - `daily_menu.py` — Admin endpoints for viewing, replacing, clearing, and manipulating the daily menu, including menu date window management.
 - `images.py` — Admin image management: upload via `ImageService`, list stored binaries, delete by ID; now responds with typed `ImageResponse` objects.
 - `items.py` — Admin endpoints for items: listing with metadata, fetching orphaned/no-unit items, CRUD, moving items across categories/units.
 - `public_images.py` — Public CDN-like endpoint serving stored images with cache headers, sanitised filenames, and ETag/If-Modified-Since handling.
+- `public.py` — JSON responses for public consumers (`/public/daily-menu`, `/public/menu-date`, `/public/settings`).
+- `health.py` — `/health` endpoint returning service status and version.
 - `units.py` — Admin CRUD for measurement units, reordering operations, and utilities to assign items to specific units.
 
 #### `app/bot/`
@@ -62,6 +65,7 @@ Daily Dish Hub is a full-stack platform for publishing a daily cafeteria menu. I
 
 #### `app/db/`
 
+- `__init__.py` — Convenience exports for engine/session helpers and declarative base.
 - `engine.py` — Builds the async SQLAlchemy engine based on current settings.
 - `session.py` — Initializes and exposes the global async engine/session factory with transaction helpers.
 - `models.py` — Declarative base shared across ORM models.
@@ -78,7 +82,7 @@ Daily Dish Hub is a full-stack platform for publishing a daily cafeteria menu. I
 
 #### `app/models/`
 
-- `__init__.py` - SQLAlchemy base model declaration.
+- `__init__.py` — Re-exports ORM models for convenient imports (`Category`, `Unit`, `Item`, etc.).
 - `category.py` — SQLAlchemy model for menu categories with sort order and backref to items.
 - `unit.py` — Measurement unit model shared across items.
 - `image.py` — Stored image metadata and binary payload relationship to items.
@@ -97,6 +101,8 @@ Daily Dish Hub is a full-stack platform for publishing a daily cafeteria menu. I
 - `images.py` — `ImageResponse` and `ImageListResponse` describing stored image metadata.
 - `items.py` — Validation models for item creation/update plus list/response wrappers.
 - `units.py` — Schemas for unit CRUD and bulk item reassignment.
+- `public.py` — Minimal response model for `/public/settings`.
+- `system.py` — Health check response schema used by `/health`.
 
 #### `app/services/`
 
@@ -108,6 +114,7 @@ Daily Dish Hub is a full-stack platform for publishing a daily cafeteria menu. I
 - `image_service.py` — Image ingestion/compression pipeline (validation, JPEG re-encoding, filename generation, CMS-like metadata helpers).
 - `item_service.py` — Item CRUD helpers with detail joins, validation of related entities, and bulk category/unit updates.
 - `menu_service.py` — Core menu orchestration (create/replace/clear menu, fetch menu items with joins, manage menu date, public serialization).
+- `ordered_entity_service.py` — Shared helpers for maintaining explicit ordering fields across categories/units.
 - `unit_service.py` — Unit CRUD, reordering, and item reassignment utilities.
 - `user_service.py` — User management (bcrypt hashing, JWT creation/verification, policy enforcement).
 
@@ -165,7 +172,7 @@ Daily Dish Hub is a full-stack platform for publishing a daily cafeteria menu. I
 - `setup.sh` — Interactive project bootstrap: installs uv, node modules, ensures `.env` exists with strong secrets, runs pre-commit setup.
 - `run_web.sh`, `run_bot.sh` — Convenience launchers for backend, bot, and Vite dev server.
 - `run_docker.sh` — CLI for Docker compose lifecycle (build/up/down/logs/clean).
-- `init_db.py` & `init_db.sh` — Database initialization, migrations execution, optional admin creation.
+- `init_db.py` — Database initialization helper invoked by Docker entrypoint.
 - `migrate.py` — Friendly wrapper around Alembic commands using uv.
 - `create_admin.py` — Interactive CLI to add the first admin user via services.
 - `reset.sh` — Cleanup script removing caches/build artifacts and rebuilding frontend.
@@ -193,6 +200,7 @@ Daily Dish Hub is a full-stack platform for publishing a daily cafeteria menu. I
 - `QUICKSTART.md` — Step-by-step local setup instructions, including Telegram bot creation tips.
 - `DOCKER.md` — Guidance for containerized workflows, compose commands, and production notes.
 - `SECURITY.md` — Mandatory configuration requirements, threat mitigations, and response checklists.
+- `DONATE.md` — Optional support and donation channels.
 - `TODO.md` — Running backlog of enhancements and chores.
 - `SCREENSHOTS.md` — Planned visual assets with references to stored media.
 - Media assets (`pics/`) — Example GIFs/PNGs (`web_menu.png`, `web_admin.png`, `mobile_menu.png`, `mobile_admin.png`, `iphone_pro_max_review.gif`, `web_review.gif`, `tg_app.png`).
