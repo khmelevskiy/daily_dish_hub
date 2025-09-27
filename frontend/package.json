@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "esbuild": "^0.25.10",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },
@@ -29,7 +30,12 @@
   "eslintConfig": {
     "rules": {
       "react/no-unescaped-entities": "off",
-      "no-empty": ["error", { "allowEmptyCatch": true }]
+      "no-empty": [
+        "error",
+        {
+          "allowEmptyCatch": true
+        }
+      ]
     }
   }
 }
