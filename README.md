@@ -32,6 +32,15 @@ Simple full-stack toolkit for running a “menu of the day” canteen. The stack
 
 Want colleagues to test the menu remotely? You can expose port 8000 using [ngrok](https://ngrok.com/).
 
+Before tunnelling, add these to your `.env` so FastAPI trusts the proxy:
+
+```
+ENV=production
+ENABLE_PROXY_HEADERS=true
+FORWARDED_ALLOW_IPS=*
+TRUSTED_HOSTS=localhost,127.0.0.1,*.ngrok-free.app
+```
+
 1. Install the Docker ngrok extension (`docker extension install ngrok/ngrok-for-docker`) or enable it via Docker Desktop → Extensions.
 2. Start the stack: `docker compose up`.
 3. In the ngrok extension, start an HTTP tunnel to port 8000 and copy the forwarding URL.

@@ -58,26 +58,25 @@ EXPOSE 8000
 # Startup script (supports optional proxy headers)
 RUN cat <<'EOF_START' > /app/start.sh && chmod +x /app/start.sh
 #!/bin/bash
-set -e
+set -euo pipefail
 
 echo "🚀 Starting application..."
 
 echo "🔗 Initializing database..."
 python scripts/init_db.py
 
-PROXY_FLAG=""
+echo "🌐 Starting web server..."
+cmd=(python -m uvicorn app.web:app --host 0.0.0.0 --port 8000)
+
 case "$(echo "${ENABLE_PROXY_HEADERS:-}" | tr "[:upper:]" "[:lower:]")" in
-  1|true|yes) PROXY_FLAG="--proxy-headers" ;;
-  *) PROXY_FLAG="" ;;
+  1|true|yes) cmd+=(--proxy-headers) ;;
 esac
 
-FORWARDED_FLAG=""
 if [ -n "${FORWARDED_ALLOW_IPS:-}" ]; then
-  FORWARDED_FLAG="--forwarded-allow-ips ${FORWARDED_ALLOW_IPS}"
+  cmd+=(--forwarded-allow-ips "${FORWARDED_ALLOW_IPS}")
 fi
 
-echo "🌐 Starting web server..."
-exec python -m uvicorn app.web:app --host 0.0.0.0 --port 8000 ${PROXY_FLAG} ${FORWARDED_FLAG}
+exec "${cmd[@]}"
 EOF_START
 
 CMD ["/app/start.sh"]

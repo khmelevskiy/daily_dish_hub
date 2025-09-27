@@ -13,15 +13,20 @@ import requests
 
 BASE_URL = os.getenv("BASE_URL", "http://localhost:8000")
 
+ADMIN_LIMIT = int(os.getenv("RATE_LIMIT_ADMIN_REQUESTS", "2000"))
+PUBLIC_LIMIT = int(os.getenv("RATE_LIMIT_PUBLIC_REQUESTS", "1000"))
+AUTH_LIMIT = int(os.getenv("RATE_LIMIT_AUTH_ATTEMPTS", "50"))
+
 
 def test_admin_rate_limit_aggressive():
     """Test rate limiting for admin APIs with fast requests."""
     print("🔒 Aggressive rate limiting test for admin APIs...")
 
     # Very fast requests
-    print("  Very fast requests (no pauses):")
+    print(f"  Very fast requests (no pauses) [limit ~ {ADMIN_LIMIT}/minute]:")
     rate_limit_hit = False
-    for i in range(250):  # Above 200 limit
+    overshoot = ADMIN_LIMIT + max(50, ADMIN_LIMIT // 20)
+    for i in range(overshoot):  # Intentionally exceed configured limit
         try:
             response = requests.get(f"{BASE_URL}/admin/items")
             if response.status_code == 429:
@@ -55,9 +60,9 @@ def test_auth_rate_limit_aggressive():
     """Test rate limiting for login with fast attempts."""
     print("\n🔐 Aggressive rate limiting test for login...")
 
-    print("  Very fast login attempts:")
+    print(f"  Very fast login attempts [limit ~ {AUTH_LIMIT}/minute]:")
     rate_limit_hit = False
-    for i in range(60):  # Above 50 limit
+    for i in range(AUTH_LIMIT + 10):
         try:
             response = requests.post(f"{BASE_URL}/auth/login", json={"username": "test", "password": "test"})
             if response.status_code == 429:
@@ -76,9 +81,10 @@ def test_public_rate_limit_aggressive():
     """Test rate limiting for public APIs with very fast requests."""
     print("\n🌐 Aggressive rate limiting test for public APIs...")
 
-    print("  Very fast requests to public API:")
+    print(f"  Very fast requests to public API [limit ~ {PUBLIC_LIMIT}/minute]:")
     rate_limit_hit = False
-    for i in range(600):  # Above 500 limit
+    overshoot = PUBLIC_LIMIT + max(100, PUBLIC_LIMIT // 10)
+    for i in range(overshoot):
         try:
             response = requests.get(f"{BASE_URL}/public/daily-menu")
             if response.status_code == 429:
@@ -114,10 +120,11 @@ def test_concurrent_requests_aggressive():
             }
 
     # Test very fast concurrent requests to admin API
-    print("  Very fast concurrent requests to admin API:")
+    print(f"  Very fast concurrent requests to admin API [limit ~ {ADMIN_LIMIT}/minute]:")
     with ThreadPoolExecutor(max_workers=10) as executor:  # More threads
         futures = []
-        for i in range(250):  # More requests
+        total_requests = min(ADMIN_LIMIT * 2, ADMIN_LIMIT + max(200, ADMIN_LIMIT // 10))
+        for i in range(total_requests):
             future = executor.submit(make_request, "/admin/items", i + 1)
             futures.append(future)
 
