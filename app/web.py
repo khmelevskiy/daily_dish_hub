@@ -9,6 +9,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from starlette.middleware.trustedhost import TrustedHostMiddleware
 
+from app import __version__
 from app.api import api_router
 from app.core.config import settings
 from app.core.logging_config import setup_logging
@@ -53,6 +54,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     title="Daily Dish Hub",
+    version=__version__,
     docs_url=_docs_url,
     redoc_url=_redoc_url,
     openapi_url=_openapi_url,

@@ -44,6 +44,13 @@ async def security_middleware(request: Request, call_next):
 
     # Check URL for dangerous patterns
     path = request.url.path
+    docs_request = False
+    try:
+        from app.core.config import settings as _settings  # local import to avoid circulars
+
+        docs_request = not _settings.disable_docs and path.startswith(("/docs", "/redoc", "/openapi"))
+    except Exception:
+        docs_request = False
     query = str(request.url.query)
     sensitive = path.startswith("/admin") or path.startswith("/auth")
     public_api = path == "/public" or path.startswith("/public/")
@@ -136,12 +143,13 @@ async def security_middleware(request: Request, call_next):
         from app.core.config import settings
 
         nonce: str | None = None
-        if settings.csp_enable_nonce:
-            nonce = secrets.token_urlsafe(16)
-            # expose nonce for templates if needed
-            setattr(request.state, "csp_nonce", nonce)
+        if not docs_request:
+            if settings.csp_enable_nonce:
+                nonce = secrets.token_urlsafe(16)
+                # expose nonce for templates if needed
+                setattr(request.state, "csp_nonce", nonce)
 
-        response.headers["Content-Security-Policy"] = settings.build_csp(nonce)
+            response.headers["Content-Security-Policy"] = settings.build_csp(nonce)
     except Exception:  # keep request resilient even if CSP generation fails
         pass
 

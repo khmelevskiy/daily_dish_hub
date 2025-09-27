@@ -68,7 +68,7 @@ python3 -c "import secrets; import string; print(''.join(secrets.choice(string.a
 
 #### Admin access restrictions
 
-- Use VPN or IP whitelist for the admin panel
+- Use IP whitelist for the admin panel
 - Enable HTTPS in production
 - Rotate passwords regularly
 

@@ -1,4 +1,4 @@
-# Support the project
+# 💰Support the project
 
 If you like this project and want to support my open-source work, you can donate with crypto:
 

@@ -16,7 +16,7 @@ from app.core.config import settings
 logger = logging.getLogger(__name__)
 
 # Optional Redis backend
-_backend = (getattr(settings, "rate_limit_backend", "memory") or "memory").lower()
+_backend = (getattr(settings, "rate_limit_backend", "redis") or "redis").lower()
 _redis_url = getattr(settings, "rate_limit_redis_url", None) or "redis://redis:6379/0"
 
 # Emit at most one warning when proxy headers are enabled without trusted proxies.

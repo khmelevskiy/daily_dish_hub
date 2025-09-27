@@ -13,7 +13,7 @@ export const DEFAULTS: AppPublicSettings = {
   site_description: 'Fresh and tasty dishes every day',
   currency_code: 'GEL',
   currency_symbol: '₾',
-  currency_locale: 'ru-GE',
+  currency_locale: 'en-GE',
 };
 
 let cachedSettings: AppPublicSettings | null = null;

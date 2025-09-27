@@ -14,7 +14,7 @@ Daily Dish Hub is a full-stack application for publishing and maintaining a cant
 - **Telegram bot (`app/bot/__init__.py`)**: aiogram bot that reads menu data through the same service layer as the
   web API. Runs either as a separate Docker service or standalone via `uv run daily_dish_hub`.
 - **Database**: PostgreSQL (async SQLAlchemy / asyncpg) stores menu entities, uploads, and users. Alembic manages schema migrations.
-- **Rate limit backend**: in-memory by default, Redis when `RATE_LIMIT_BACKEND=redis` (Docker compose includes a Redis service).
+- **Rate limit backend**: Redis when `RATE_LIMIT_BACKEND=redis` (Docker compose includes a Redis service) or in-memory if `RATE_LIMIT_BACKEND=memory`.
 - **Frontend (`frontend/`)**: React 18+ with TypeScript. Built assets are copied into `app/static` during CI/Docker builds.
 
 ### 2.2 Backend layering
@@ -115,26 +115,21 @@ Daily Dish Hub is a full-stack application for publishing and maintaining a cant
 ## 11. 🗂️ Repository Layout
 
 ``` text
-app/                # Backend application package
-  api/              # FastAPI routers
-  bot/              # Telegram bot entry point
-  core/             # Configuration and logging
-  db/               # Engine initialization, session helpers
-  middleware/       # Security and rate limiting middleware
-  models/           # SQLAlchemy ORM models
-  schemas/          # Pydantic schemas
-  services/         # Business logic
-  templates/        # Jinja templates for public menu
-  static/           # Built frontend assets (generated)
-frontend/           # React admin UI (Vite)
-migrations/         # Alembic environment and versions
-scripts/            # Helper scripts (setup, Docker, migrations, admin creation)
-tests/              # Functional + unit tests
+app/                    # Backend application package
+  api/                  # FastAPI routers
+  bot/                  # Telegram bot entry point
+  core/                 # Configuration and logging
+  db/                   # Engine initialization, session helpers
+  factories/            # Initial data seed helpers
+  middleware/           # Security and rate limiting middleware
+  models/               # SQLAlchemy ORM models
+  public/               # Public templates + static assets
+  schemas/              # Pydantic schemas
+  services/             # Business logic
+  static/               # Built frontend assets (generated React admin)
+docs/                   # Project documentation (architecture, quickstart, etc.)
+frontend/               # React admin UI (Vite)
+migrations/             # Alembic environment and versions
+scripts/                # Helper scripts (setup, Docker, migrations, admin creation)
+tests/                  # Functional + unit tests
 ```
-
-## 12. 🧭 Next Steps for Contributors
-
-1. Review SECURITY.md before deploying to production.
-2. Update `.env` with strong secrets and rate-limit settings suited for your traffic profile.
-3. When submitting PRs, include relevant tests and update this document for architecture-impacting changes.
-4. If adding APIs, document them here (section 8) and consider adding swagger-friendly docstrings while keeping production docs disabled.

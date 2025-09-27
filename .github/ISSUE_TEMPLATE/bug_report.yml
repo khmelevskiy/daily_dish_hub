@@ -1,0 +1,65 @@
+name: 🐛 Bug report
+description: Share a bug with quick, reproducible details.
+title: "[BUG] "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting an issue! A clear summary and reproduction steps are enough to get started.
+
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+      description: One sentence describing the issue.
+      placeholder: Image upload fails when filename contains spaces
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: List the steps that reliably trigger the bug.
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected result
+      description: What should have happened?
+      placeholder: Image appears in the gallery after upload.
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual result
+      description: What happened instead? Include error messages if relevant.
+      placeholder: UI shows "Upload failed" toast and the console logs a 500 error.
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment (optional)
+      description: Version, deployment mode (Docker/local), browser/device, recent changes, etc.
+      placeholder: |
+        - Version: 1.0.0
+        - Environment: Docker, macOS 14
+        - Browser: Chrome 128
+
+  - type: textarea
+    id: attachments
+    attributes:
+      label: Logs / screenshots (optional)
+      description: Paste stack traces, screenshots, or any supporting info.
+      placeholder: Drag & drop or paste them here.

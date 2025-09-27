@@ -7,8 +7,6 @@
 
 Simple full-stack toolkit for running a “menu of the day” canteen. The stack includes a FastAPI backend, React admin UI, PostgreSQL storage, and a Telegram bot for guests who prefer chat.
 
-> Quick links: [Quickstart](docs/QUICKSTART.md) · [Architecture](docs/README.md) · [Security checklist](docs/SECURITY.md) · [Screenshots plan](docs/SCREENSHOTS.md)
-
 ## 🎯 What you get
 
 - Web admin UI to create categories, dishes, and daily menus.
@@ -28,7 +26,7 @@ Simple full-stack toolkit for running a “menu of the day” canteen. The stack
 - Follow the step-by-step [Quickstart](docs/QUICKSTART.md) to clone the repo, configure `.env`, create the Telegram bot, and run the stack (Docker or local).
 - Need a one-liner? `./scripts/run_docker.sh up` builds the image, runs migrations, and starts the full stack; `./scripts/run_docker.sh down` stops it.
 - Create an admin at any time with `uv run python scripts/create_admin.py` (or set credentials in `.env` before the first launch).
-- Capture or review planned screenshots listed in [docs/SCREENSHOTS.md](docs/SCREENSHOTS.md).
+- Review planned screenshots listed in [docs/SCREENSHOTS.md](docs/SCREENSHOTS.md).
 
 ## 🌐 Share your local instance quickly (ngrok)
 

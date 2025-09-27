@@ -16,6 +16,6 @@
 
 ![mobile_menu](pics/mobile_menu.png)
 
-## 📱 Mobile admin (iPhone)
+## 📱 Mobile admin from iPhone Pro Max (Safari)
 
 ![mobile_admin](pics/mobile_admin.png)
