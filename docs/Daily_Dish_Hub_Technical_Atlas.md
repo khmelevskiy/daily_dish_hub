@@ -118,8 +118,9 @@ Daily Dish Hub is a full-stack platform for publishing a daily cafeteria menu. I
 
 #### `app/public/`
 
-- `templates/menu.html` — Public menu Jinja template with site metadata, CSP nonce support, and cart markup.
+- `templates/menu.html` — Public menu Jinja template with site metadata, CSP nonce support, cart markup, and GitHub link.
 - `static/css/menu.css`, `static/js/menu.js` — Bundled styles and script powering the standalone public menu experience.
+- `static/pics/github-mark.svg` — GitHub mark displayed on the public menu.
 
 ### 2.3 `migrations/` - alembic migrations
 
@@ -194,7 +195,7 @@ Daily Dish Hub is a full-stack platform for publishing a daily cafeteria menu. I
 - `SECURITY.md` — Mandatory configuration requirements, threat mitigations, and response checklists.
 - `TODO.md` — Running backlog of enhancements and chores.
 - `SCREENSHOTS.md` — Planned visual assets with references to stored media.
-- Media assets (`pics/`) — Example GIFs and PNGs referenced in documentation.
+- Media assets (`pics/`) — Example GIFs/PNGs (`iphone_pro_max_review.gif`, `web_review.gif`, `tg_app.png`) used in documentation.
 - `Daily_Dish_Hub_Technical_Atlas.md` — (this document) comprehensive technical reference created for deep-dive reviews.
 
 ## 3. 🔁 Cross-Cutting Notes

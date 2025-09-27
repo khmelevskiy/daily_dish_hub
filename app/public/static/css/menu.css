@@ -13,6 +13,34 @@ body {
     color: #333;
 }
 
+.github-link {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(15, 23, 42, 0.82);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-decoration: none;
+}
+
+.github-link:hover,
+.github-link:focus {
+    transform: translateY(-2px) scale(1.06);
+    box-shadow: 0 14px 32px rgba(15, 23, 42, 0.3);
+}
+
+.github-link img {
+    width: 26px;
+    height: 26px;
+    filter: invert(1);
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;

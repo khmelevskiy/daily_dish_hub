@@ -62,5 +62,14 @@
     </button>
 
     <script src="{{ request.url_for('public_static', path='js/menu.js') }}" {% if csp_nonce %}nonce="{{ csp_nonce }}"{% endif %}></script>
+    <a
+        class="github-link"
+        href="https://github.com/khmelevskiy/daily_dish_hub"
+        target="_blank"
+        rel="noopener noreferrer"
+        title="View the project on GitHub"
+    >
+        <img src="{{ request.url_for('public_static', path='pics/github-mark.svg') }}" alt="GitHub" />
+    </a>
 </body>
 </html>
