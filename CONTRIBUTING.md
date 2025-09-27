@@ -1,29 +1,15 @@
 # 🤝 Contributing to Daily Dish Hub
 
-## 🚀 Getting Started
+We currently **do not accept pull requests**. Instead, please use GitHub Issues to share feedback:
 
-1. Fork & clone the repository.
-2. Follow the [Quickstart](docs/QUICKSTART.md) to configure `.env`, create a Telegram bot token, and launch the stack (Docker or local).
-3. Run `./scripts/setup.sh` once if you are developing locally. It installs Python dependencies (via `uv`), npm packages, and pre-commit hooks.
-4. Fill `.env` with your settings (see `.env.example`).
+- **Bugs:** provide clear reproduction steps, expected vs actual behaviour, and whether you ran the stack via Docker or locally.
+- **Security concerns:** follow the disclosure process in [docs/SECURITY.md](docs/SECURITY.md) and open a private issue.
+- **Feature ideas / improvements:** describe the problem you want to solve and any constraints you already considered.
 
-## 🔄 Everyday developer workflow
+If you want to experiment locally before filing an issue, the docs cover everything you need:
 
-```bash
-./scripts/run_web.sh   # FastAPI + React (reload)
-./scripts/run_bot.sh   # Telegram bot worker
-```
+- Setup: [docs/QUICKSTART.md](docs/QUICKSTART.md)
+- Architecture & data flow: [docs/README.md](docs/README.md)
+- Testing guidance: [tests/README.md](tests/README.md)
 
-If you rely on Docker, use `./scripts/run_docker.sh up` instead. Keep Postgres and Redis running while you iterate.
-
-## ✅ Tests & quality
-
-- You can run all tests with `tests/run_all.sh`, or run only the specific tests you need.
-
-## 🐞 Reporting issues
-
-- For security vulnerabilities, follow [SECURITY.md](docs/SECURITY.md) and create a issue.
-- For bugs, include reproduction steps and environment details (Docker vs local, OS, etc.).
-- For ideas, describe the user scenario you want to improve.
-
-Thank you for contributing! Every improvement helps other teams launch their menu bot faster.
+Thanks for taking the time to report issues—your input helps us keep the canteen menu running smoothly for everyone.
