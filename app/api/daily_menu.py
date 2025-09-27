@@ -12,7 +12,6 @@ from app.services import MenuService
 
 router = APIRouter()
 
-logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 

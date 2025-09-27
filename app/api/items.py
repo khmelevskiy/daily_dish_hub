@@ -13,7 +13,6 @@ from app.services.item_service import ItemService
 router = APIRouter()
 
 
-logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
