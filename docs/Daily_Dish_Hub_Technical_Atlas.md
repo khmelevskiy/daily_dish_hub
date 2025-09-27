@@ -195,7 +195,7 @@ Daily Dish Hub is a full-stack platform for publishing a daily cafeteria menu. I
 - `SECURITY.md` — Mandatory configuration requirements, threat mitigations, and response checklists.
 - `TODO.md` — Running backlog of enhancements and chores.
 - `SCREENSHOTS.md` — Planned visual assets with references to stored media.
-- Media assets (`pics/`) — Example GIFs/PNGs (`iphone_pro_max_review.gif`, `web_review.gif`, `tg_app.png`) used in documentation.
+- Media assets (`pics/`) — Example GIFs/PNGs (`web_menu.png`, `web_admin.png`, `mobile_menu.png`, `mobile_admin.png`, `iphone_pro_max_review.gif`, `web_review.gif`, `tg_app.png`).
 - `Daily_Dish_Hub_Technical_Atlas.md` — (this document) comprehensive technical reference created for deep-dive reviews.
 
 ## 3. 🔁 Cross-Cutting Notes

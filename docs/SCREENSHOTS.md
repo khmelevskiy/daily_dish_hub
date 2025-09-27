@@ -11,3 +11,11 @@
 ## 💬 Screenshot from Telegram app (bot menu)
 
 ![tg_app](pics/tg_app.png)
+
+## 📱 Mobile menu (iPhone)
+
+![mobile_menu](pics/mobile_menu.png)
+
+## 📱 Mobile admin (iPhone)
+
+![mobile_admin](pics/mobile_admin.png)

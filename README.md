@@ -17,6 +17,12 @@ Simple full-stack toolkit for running a “menu of the day” canteen. The stack
 - Image uploads with automatic JPEG conversion.
 - Secure defaults: JWT auth, bcrypt password hashing, rate limiting, CSP, hardened middleware.
 
+## 📸 Screenshots
+
+![Public menu](docs/pics/web_menu.png)
+
+![Admin dashboard](docs/pics/web_admin.png)
+
 ## 🚀 Getting started
 
 - Follow the step-by-step [Quickstart](docs/QUICKSTART.md) to clone the repo, configure `.env`, create the Telegram bot, and run the stack (Docker or local).
