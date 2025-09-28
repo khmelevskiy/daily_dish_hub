@@ -187,6 +187,11 @@ function App() {
   };
 
   const loadData = useCallback(async () => {
+    if (!isAuthenticated) {
+      setLoading(false);
+      return;
+    }
+
     try {
       setLoading(true);
 
@@ -243,7 +248,7 @@ function App() {
     } finally {
       setLoading(false);
     }
-  }, [activeTab]);
+  }, [activeTab, isAuthenticated, loadImages, loadMenuDateHook, loadNoUnit, loadOrphaned]);
 
   useEffect(() => {
     loadData();

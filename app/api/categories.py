@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from sqlalchemy import select
+from sqlalchemy import select, update
 
 from app.db import session_scope
 from app.models.category import Category
@@ -169,14 +169,14 @@ async def move_orphaned_items_to_category(
             raise HTTPException(status_code=400, detail="Item list cannot be empty")
 
         # Move items without categories
-        updated_count = 0
-        for item_id in item_ids:
-            result = await session.execute(select(Item).where(Item.id == item_id))
-            item = result.scalar_one_or_none()
-
-            if item:
-                item.category_id = category_id
-                updated_count += 1
+        update_stmt = (
+            update(Item)
+            .where(Item.id.in_(item_ids), Item.category_id.is_(None))
+            .values(category_id=category_id)
+            .execution_options(synchronize_session=False)
+        )
+        result = await session.execute(update_stmt)
+        updated_count = int(result.rowcount or 0)
 
         await session.commit()
 
