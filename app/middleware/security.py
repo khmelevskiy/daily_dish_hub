@@ -119,14 +119,6 @@ async def security_middleware(request: Request, call_next):
                 )
                 return Response(content="Access denied", status_code=403, media_type="text/plain")
 
-    # Check request headers (temporarily disabled for debugging)
-    # for header_name, header_value in request.headers.items():
-    #     header_str = f"{header_name}: {header_value}"
-    #     for pattern in DANGEROUS_PATTERNS:
-    #         if re.search(pattern, header_str, re.IGNORECASE):
-    #             logger.warning(f"Blocked request with dangerous header pattern: {pattern} from IP: {client_ip}")
-    #             return Response(content="Access denied", status_code=403, media_type="text/plain")
-
     # Continue request processing
     response = await call_next(request)
 
